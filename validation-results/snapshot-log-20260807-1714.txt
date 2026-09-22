@@ -1,0 +1,10 @@
+[cli] CLI flag overriding config value: flag=require-gpu config=false override=true
+[cli] deploying agent: namespace=default
+[cli] agent deployed successfully
+[cli] waiting for Job completion: job=aicr timeout=5m0s
+[cli] pod current phase: name=aicr-44l7f status=Pending waitingReason=ContainerCreating
+[cli] pod current phase: name=aicr-44l7f status=Pending
+[cli] pod current phase: name=aicr-44l7f status=Succeeded
+[cli] pod current phase: name=aicr-44l7f status=Succeeded
+[cli] job completed successfully
+[cli] snapshot saved to file: path=./validation-results/snapshot-20260807-1714.yaml

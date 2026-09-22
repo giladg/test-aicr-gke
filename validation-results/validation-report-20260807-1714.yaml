@@ -1,0 +1,403 @@
+{
+  "reportFormat": "CTRF",
+  "specVersion": "0.0.1",
+  "timestamp": "2026-08-08T00:22:35Z",
+  "generatedBy": "aicr",
+  "results": {
+    "tool": {
+      "name": "aicr",
+      "version": "0.18.0"
+    },
+    "summary": {
+      "tests": 14,
+      "passed": 5,
+      "failed": 7,
+      "skipped": 1,
+      "pending": 0,
+      "other": 1,
+      "start": 1786148053006,
+      "stop": 1786148742733
+    },
+    "tests": [
+      {
+        "name": "operator-health",
+        "status": "failed",
+        "duration": 0,
+        "suite": [
+          "deployment"
+        ],
+        "message": "[NOT_FOUND] no gpu-operator pods found",
+        "stdout": [
+          "time=2026-08-08T00:14:15.589Z level=INFO msg=\"starting check\" name=operator-health",
+          "time=2026-08-08T00:14:15.600Z level=INFO msg=\"listing pods\" namespace=gpu-operator label=\"app=gpu-operator\"",
+          "time=2026-08-08T00:14:15.621Z level=ERROR msg=FAIL message=\"[NOT_FOUND] no gpu-operator pods found\""
+        ]
+      },
+      {
+        "name": "expected-resources",
+        "status": "other",
+        "duration": 0,
+        "suite": [
+          "deployment"
+        ],
+        "message": "pod not found for Job aicr-expected-resources-5592f9b7: [NOT_FOUND] pod for job not found"
+      },
+      {
+        "name": "gpu-operator-version",
+        "status": "passed",
+        "duration": 0,
+        "suite": [
+          "deployment"
+        ],
+        "stdout": [
+          "time=2026-08-08T00:22:21.183Z level=INFO msg=\"starting check\" name=gpu-operator-version",
+          "Detected GPU Operator version: v26.3.3",
+          "Constraint: \u003e= v24.6.0 → true"
+        ]
+      },
+      {
+        "name": "check-nvidia-smi",
+        "status": "passed",
+        "duration": 7000,
+        "suite": [
+          "deployment"
+        ],
+        "stdout": [
+          "time=2026-08-08T00:22:24.997Z level=INFO msg=\"starting check\" name=check-nvidia-smi",
+          "Found 1 GPU node(s):",
+          "  gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91",
+          "All 1 GPU node(s) available. Verifying...",
+          "time=2026-08-08T00:22:25.251Z level=INFO msg=\"verifying node\" node=gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91",
+          "time=2026-08-08T00:22:25.251Z level=INFO msg=\"deploying nvidia-smi verify pod\" node=gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91 podName=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91 image=nvcr.io/nvidia/cuda:13.0.0-base-ubuntu22.04 namespace=aicr-validation",
+          "I0808 00:22:25.279961       1 warnings.go:107] \"Warning: metadata.name: this is used in the Pod's hostname, which can result in surprising behavior; a DNS label is recommended: [must be no more than 63 characters]\"",
+          "time=2026-08-08T00:22:25.280Z level=INFO msg=\"waiting for pod to reach Succeeded state\" name=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91",
+          "time=2026-08-08T00:22:25.341Z level=INFO msg=\"pod current phase\" name=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91 status=Pending waitingReason=ContainerCreating",
+          "time=2026-08-08T00:22:29.746Z level=INFO msg=\"pod current phase\" name=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91 status=Running",
+          "time=2026-08-08T00:22:30.747Z level=INFO msg=\"pod current phase\" name=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91 status=Running",
+          "time=2026-08-08T00:22:31.823Z level=INFO msg=\"pod current phase\" name=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91 status=Succeeded",
+          "time=2026-08-08T00:22:31.823Z level=INFO msg=\"pod successfully completed\" name=nvidia-smi-verify-gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91",
+          "  gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91: OK",
+          "Successfully verified GPU on all 1 nodes"
+        ]
+      },
+      {
+        "name": "dra-support",
+        "status": "failed",
+        "duration": 0,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[INTERNAL] daemonset nvidia-dra-driver/nvidia-dra-driver-gpu-kubelet-plugin not ready: 0/0 pods",
+        "stdout": [
+          "time=2026-08-08T00:22:37.335Z level=INFO msg=\"starting check\" name=dra-support",
+          "--- DRA driver namespace ---",
+          "Namespace: nvidia-dra-driver",
+          "Source:    resolved recipe componentRef nvidia-dra-driver-gpu",
+          "--- DRA API resources ---",
+          "Equivalent: kubectl api-resources --api-group=resource.k8s.io",
+          "",
+          "Served version: resource.k8s.io/v1",
+          "deviceclasses              DeviceClass            namespaced=false",
+          "resourceclaims             ResourceClaim          namespaced=true",
+          "resourceclaims/status      ResourceClaim          namespaced=true",
+          "resourceclaimtemplates     ResourceClaimTemplate  namespaced=true",
+          "resourceslices             ResourceSlice          namespaced=false",
+          "",
+          "--- DRA driver pods ---",
+          "Equivalent: kubectl get pods -n nvidia-dra-driver -o wide",
+          "",
+          "nvidia-dra-driver-gpu-controller-5cf6577f5-tlnvn ready=1/1 phase=Running node=gke-aicr-gke-test-b0-system-pool-3fac-91efcc5e-ndsc",
+          "",
+          "--- DRA Controller Deployment ---",
+          "Name:      nvidia-dra-driver/nvidia-dra-driver-gpu-controller",
+          "Replicas:  1/1 available",
+          "Image:     registry.k8s.io/dra-driver-nvidia/dra-driver-nvidia-gpu:v0.4.1",
+          "time=2026-08-08T00:22:37.389Z level=ERROR msg=FAIL message=\"[INTERNAL] daemonset nvidia-dra-driver/nvidia-dra-driver-gpu-kubelet-plugin not ready: 0/0 pods\""
+        ]
+      },
+      {
+        "name": "gang-scheduling",
+        "status": "passed",
+        "duration": 5000,
+        "suite": [
+          "conformance"
+        ],
+        "stdout": [
+          "time=2026-08-08T00:22:41.130Z level=INFO msg=\"starting check\" name=gang-scheduling",
+          "--- KAI scheduler deployments ---",
+          "Equivalent: kubectl get deploy -n kai-scheduler",
+          "",
+          "kai-scheduler-default     available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/scheduler:v0.14.1",
+          "admission                 available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/admission:v0.14.1",
+          "binder                    available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/binder:v0.14.1",
+          "kai-operator              available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/operator:v0.14.1",
+          "pod-grouper               available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/podgrouper:v0.14.1",
+          "podgroup-controller       available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/podgroupcontroller:v0.14.1",
+          "queue-controller          available=1/1 image=ghcr.io/kai-scheduler/kai-scheduler/queuecontroller:v0.14.1",
+          "",
+          "--- KAI scheduler pods ---",
+          "Equivalent: kubectl get pods -n kai-scheduler",
+          "",
+          "admission-7b57f4b6c6-sq4mq                   ready=1/1 phase=Running",
+          "binder-649dd676c4-xq4dg                      ready=1/1 phase=Running",
+          "kai-operator-6c56fbf78b-f8qrk                ready=1/1 phase=Running",
+          "kai-scheduler-default-7b48b84887-kptks       ready=1/1 phase=Running",
+          "pod-grouper-6dcf54945c-9srrz                 ready=1/1 phase=Running",
+          "podgroup-controller-cb75b6665-l2bvl          ready=1/1 phase=Running",
+          "queue-controller-86f7bb8d87-mj8ng            ready=1/1 phase=Running",
+          "",
+          "--- Gang Scheduling CRDs ---",
+          "Equivalent: kubectl get crd queues.scheduling.run.ai podgroups.scheduling.run.ai",
+          "",
+          "  queues.scheduling.run.ai: present",
+          "  podgroups.scheduling.run.ai: present",
+          "",
+          "--- Apply test manifest ---",
+          "Equivalent: kubectl apply generated CPU-only PodGroup test resources",
+          "",
+          "Created PodGroup=gang-group-24bd6b46 Pods=gang-worker-24bd6b46-0,gang-worker-24bd6b46-1 in namespace=gang-scheduling-test",
+          "--- PodGroup status ---",
+          "Equivalent: kubectl get podgroups -n gang-scheduling-test -o wide",
+          "",
+          "gang-group-24bd6b46                  minMember=2",
+          "pg-gang-worker-24bd6b46-0-cc4bd558-710e-4539-83ca-3ed315be9f0f minMember=1",
+          "pg-gang-worker-24bd6b46-1-5b6950ef-5833-442b-bdb7-91448892e2bd minMember=1",
+          "",
+          "--- Pod status ---",
+          "Equivalent: kubectl get pods -n gang-scheduling-test -o wide",
+          "",
+          "Pod 0: gang-worker-24bd6b46-0  phase=Succeeded  scheduler=kai-scheduler  scheduled=2026-08-08T00:22:42Z",
+          "Pod 1: gang-worker-24bd6b46-1  phase=Succeeded  scheduler=kai-scheduler  scheduled=2026-08-08T00:22:43Z",
+          "Co-schedule span: 1s",
+          "Allowed window:   30s",
+          "Earliest/Latest:  2026-08-08T00:22:42Z / 2026-08-08T00:22:43Z",
+          "",
+          "--- gang-worker-0 logs ---",
+          "Equivalent: kubectl logs gang-worker-0 -n gang-scheduling-test",
+          "",
+          "Gang worker 0 completed successfully",
+          "",
+          "--- gang-worker-1 logs ---",
+          "Equivalent: kubectl logs gang-worker-1 -n gang-scheduling-test",
+          "",
+          "Gang worker 1 completed successfully",
+          "",
+          "--- Delete test namespace ---",
+          "Equivalent: kubectl delete namespace gang-scheduling-test --ignore-not-found",
+          "",
+          "Deleted gang test pods, PodGroup, and the gang-scheduling-test namespace."
+        ]
+      },
+      {
+        "name": "accelerator-metrics",
+        "status": "failed",
+        "duration": 1000,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[SERVICE_UNAVAILABLE] failed to reach http://nvidia-dcgm-exporter.gpu-operator.svc:9400/metrics: Get \"http://nvidia-dcgm-exporter.gpu-operator.svc:9400/metrics\": dial tcp: lookup nvidia-dcgm-exporter.gpu-operator.svc on 34.118.224.10:53: no such host",
+        "stdout": [
+          "time=2026-08-08T00:22:51.004Z level=INFO msg=\"starting check\" name=accelerator-metrics",
+          "time=2026-08-08T00:22:51.045Z level=ERROR msg=FAIL message=\"[SERVICE_UNAVAILABLE] failed to reach http://nvidia-dcgm-exporter.gpu-operator.svc:9400/metrics: Get \\\"http://nvidia-dcgm-exporter.gpu-operator.svc:9400/metrics\\\": dial tcp: lookup nvidia-dcgm-exporter.gpu-operator.svc on 34.118.224.10:53: no such host\""
+        ]
+      },
+      {
+        "name": "ai-service-metrics",
+        "status": "failed",
+        "duration": 121000,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[NOT_FOUND] no DCGM_FI_DEV_GPU_UTIL time series in Prometheus after 2m0s — verify DCGM exporter is running and scraping GPU metrics",
+        "stdout": [
+          "time=2026-08-08T00:22:56.803Z level=INFO msg=\"starting check\" name=ai-service-metrics",
+          "time=2026-08-08T00:22:57.003Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:23:07.014Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:23:17.023Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:23:27.030Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:23:37.043Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:23:47.052Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:23:57.063Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:24:07.078Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:24:17.089Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:24:27.096Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:24:37.106Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:24:47.112Z level=INFO msg=\"DCGM_FI_DEV_GPU_UTIL not yet available, retrying\" poll_interval=10s",
+          "time=2026-08-08T00:24:56.996Z level=ERROR msg=FAIL message=\"[NOT_FOUND] no DCGM_FI_DEV_GPU_UTIL time series in Prometheus after 2m0s — verify DCGM exporter is running and scraping GPU metrics\""
+        ]
+      },
+      {
+        "name": "pod-autoscaling",
+        "status": "skipped",
+        "duration": 0,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[INTERNAL] DCGM exporter not found — GPU metrics not available for HPA: skip",
+        "stdout": [
+          "time=2026-08-08T00:25:01.154Z level=INFO msg=\"starting check\" name=pod-autoscaling",
+          "time=2026-08-08T00:25:01.412Z level=INFO msg=SKIP reason=\"[INTERNAL] DCGM exporter not found — GPU metrics not available for HPA: skip\""
+        ]
+      },
+      {
+        "name": "cluster-autoscaling",
+        "status": "failed",
+        "duration": 0,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[NOT_FOUND] no GPU nodes found in GKE cluster",
+        "stdout": [
+          "time=2026-08-08T00:25:05.370Z level=INFO msg=\"starting check\" name=cluster-autoscaling",
+          "time=2026-08-08T00:25:05.513Z level=INFO msg=\"Karpenter not found, falling back to platform autoscaling\" platform=gke",
+          "time=2026-08-08T00:25:05.614Z level=ERROR msg=FAIL message=\"[NOT_FOUND] no GPU nodes found in GKE cluster\""
+        ]
+      },
+      {
+        "name": "robust-controller",
+        "status": "passed",
+        "duration": 0,
+        "suite": [
+          "conformance"
+        ],
+        "stdout": [
+          "time=2026-08-08T00:25:09.328Z level=INFO msg=\"starting check\" name=robust-controller",
+          "time=2026-08-08T00:25:09.339Z level=INFO msg=\"robust-controller: validating Kubeflow Trainer (kubeflow-trainer in recipe)\"",
+          "--- Kubeflow Trainer Deployment ---",
+          "Equivalent: kubectl get deploy -n kubeflow",
+          "",
+          "Name:      kubeflow/kubeflow-trainer-controller-manager",
+          "Replicas:  1/1 available",
+          "Image:     ghcr.io/kubeflow/trainer/trainer-controller-manager:v2.2.0",
+          "--- Kubeflow Trainer pods ---",
+          "Equivalent: kubectl get pods -n kubeflow",
+          "",
+          "jobset-controller-cf4cc7c58-d9cbx              ready=1/1 phase=Running node=gke-aicr-gke-test-b0-system-pool-3fac-91efcc5e-ndsc",
+          "kubeflow-trainer-controller-manager-56c896dcdc-dpdvf ready=1/1 phase=Running node=gke-aicr-gke-test-b0-system-pool-3fac-91efcc5e-ndsc",
+          "",
+          "--- Validating webhooks ---",
+          "Equivalent: kubectl get validatingwebhookconfigurations | grep trainer",
+          "",
+          "WebhookConfig: validator.trainer.kubeflow.org",
+          "  service=kubeflow/kubeflow-trainer-controller-manager endpointSlices=1",
+          "  service=kubeflow/kubeflow-trainer-controller-manager endpointSlices=1",
+          "  service=kubeflow/kubeflow-trainer-controller-manager endpointSlices=1",
+          "--- Validating Webhook ---",
+          "Equivalent: kubectl get validatingwebhookconfigurations",
+          "",
+          "Name:      validator.trainer.kubeflow.org",
+          "Endpoint:  reachable",
+          "--- Kubeflow Trainer CRDs ---",
+          "Equivalent: kubectl get crds | grep trainer",
+          "",
+          "Required CRD present: trainjobs.trainer.kubeflow.org",
+          "--- Webhook Rejection Test ---",
+          "Equivalent: kubectl apply -f \u003cinvalid trainjob\u003e",
+          "",
+          "Resource:    default/robust-test-17f04235",
+          "HTTPStatus:  403",
+          "Reason:      Forbidden",
+          "Message:     admission webhook \"validator.trainjob.trainer.kubeflow.org\" denied the request: spec.RuntimeRef: Invalid value: {\"name\":\"robust-test-nonexistent-runtime\",\"apiGroup\":\"trainer.kubeflow.org\",\"kind\":\"ClusterTrainingRuntime\"}: ClusterTrainingRuntime.trainer.kubeflow.org \"robust-test-nonexistent-runtime\" not found: specified clusterTrainingRuntime must be created before the TrainJob is created"
+        ]
+      },
+      {
+        "name": "secure-accelerator-access",
+        "status": "failed",
+        "duration": 19000,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[INTERNAL] device plugin test pod phase=Failed (want Succeeded), GPU allocation may have failed",
+        "stdout": [
+          "time=2026-08-08T00:25:13.407Z level=INFO msg=\"starting check\" name=secure-accelerator-access",
+          "--- ClusterPolicy status ---",
+          "Equivalent: kubectl get clusterpolicy -o wide",
+          "",
+          "Name:   cluster-policy",
+          "State:  unknown",
+          "--- GPU operator pods ---",
+          "Equivalent: kubectl get pods -n gpu-operator -o wide",
+          "",
+          "",
+          "--- GPU operator DaemonSets ---",
+          "Equivalent: kubectl get ds -n gpu-operator",
+          "",
+          "",
+          "--- ResourceSlices ---",
+          "Equivalent: kubectl get resourceslices -o wide",
+          "",
+          "",
+          "--- GPU devices in ResourceSlice ---",
+          "Equivalent: kubectl get resourceslices -o yaml",
+          "",
+          "apiVersion: resource.k8s.io/v1",
+          "items: []",
+          "kind: ResourceSliceList",
+          "metadata:",
+          "  resourceVersion: \"1786148713769600000\"",
+          "",
+          "--- GPU allocation mode ---",
+          "Equivalent: kubectl get deviceclass gpu.nvidia.com; kubectl get resourceslices; kubectl get nodes -o wide",
+          "",
+          "DRA (gpu.nvidia.com):              usable=false nodes=[]",
+          "Device plugin (nvidia.com/gpu):  usable=true nodes=[gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91]",
+          "full-GPU DRA not usable: DeviceClass gpu.nvidia.com not found",
+          "device plugin usable: 1 Ready, schedulable node(s) with allocatable nvidia.com/gpu",
+          "extended-resource attribution: no DeviceClass maps nvidia.com/gpu to DRA",
+          "note: node eligibility is Ready+uncordoned only — node taints are not evaluated; workloads must tolerate any node taints",
+          "--- GPU allocation policy ---",
+          "configured policy: device-plugin-extended-resource",
+          "--- Secure access mode ---",
+          "mode exercised: device plugin (nvidia.com/gpu limits)",
+          "--- Pod status ---",
+          "Equivalent: kubectl get pod gpu-alloc-test-9f64407839a766202abcc23b8821e1a6 -n aicr-gpu-test-9f64407839a766202abcc23b8821e1a6 -o wide",
+          "",
+          "Name:      aicr-gpu-test-9f64407839a766202abcc23b8821e1a6/gpu-alloc-test-9f64407839a766202abcc23b8821e1a6",
+          "Phase:     Failed",
+          "Node:      gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91",
+          "GPULimits: nvidia.com/gpu: 1",
+          "--- GPU test pod logs (gpu-test) ---",
+          "Equivalent: kubectl logs gpu-alloc-test-9f64407839a766202abcc23b8821e1a6 -n aicr-gpu-test-9f64407839a766202abcc23b8821e1a6 -c gpu-test",
+          "",
+          "bash: line 1: nvidia-smi: command not found",
+          "FAIL: nvidia-smi cannot enumerate GPUs - no usable GPU granted",
+          "",
+          "--- GPU test pod logs (unauthorized) ---",
+          "Equivalent: kubectl logs gpu-alloc-test-9f64407839a766202abcc23b8821e1a6 -n aicr-gpu-test-9f64407839a766202abcc23b8821e1a6 -c unauthorized",
+          "",
+          "PASS: GPU isolated",
+          "",
+          "--- Cleanup test namespace ---",
+          "Equivalent: kubectl get namespace aicr-gpu-test-9f64407839a766202abcc23b8821e1a6 --ignore-not-found -o jsonpath='{.metadata.uid} {.status.phase}'  # read-only inspection of the current state; see the artifact body for what cleanup actually did",
+          "",
+          "namespace aicr-gpu-test-9f64407839a766202abcc23b8821e1a6 deleted — confirmed absent (all test resources removed with it)",
+          "time=2026-08-08T00:25:32.982Z level=ERROR msg=FAIL message=\"[INTERNAL] device plugin test pod phase=Failed (want Succeeded), GPU allocation may have failed\""
+        ]
+      },
+      {
+        "name": "gpu-operator-health",
+        "status": "failed",
+        "duration": 0,
+        "suite": [
+          "conformance"
+        ],
+        "message": "[INTERNAL] ClusterPolicy status.state not found",
+        "stdout": [
+          "time=2026-08-08T00:25:36.420Z level=INFO msg=\"starting check\" name=gpu-operator-health",
+          "time=2026-08-08T00:25:36.667Z level=ERROR msg=FAIL message=\"[INTERNAL] ClusterPolicy status.state not found\""
+        ]
+      },
+      {
+        "name": "platform-health",
+        "status": "passed",
+        "duration": 0,
+        "suite": [
+          "conformance"
+        ],
+        "stdout": [
+          "time=2026-08-08T00:25:40.468Z level=INFO msg=\"starting check\" name=platform-health"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+[cli] generating recipe offline — reads inputs only; does not deploy to or modify any cluster
+[cli] CLI flag overriding snapshot-detected value: field=service detected=any override=gke
+[cli] CLI flag overriding snapshot-detected value: field=accelerator detected=any override=h100
+[cli] CLI flag overriding snapshot-detected value: field=intent detected=any override=training
+[cli] CLI flag overriding snapshot-detected value: field=os detected=any override=cos
+[cli] CLI flag overriding snapshot-detected value: field=platform detected=any override=kubeflow
+[cli] building recipe from criteria: criteria=criteria(service=gke, accelerator=h100, intent=training, os=cos, platform=kubeflow)
+[cli] recipe generation completed: output=./validation-results/recipe-20260807-1714.yaml components=14 componentNames=cert-manager, gke-nccl-tcpxo, gpu-operator, k8s-ephemeral-storage-metrics, kai-scheduler, kube-prometheus-stack, kubeflow-trainer, nfd, nodewright-customizations, nodewright-operator, nvidia-dra-driver-gpu, nvsentinel, prometheus-adapter, prometheus-operator-crds overlays=7

@@ -1,0 +1,44 @@
+{
+  "reportFormat": "CTRF",
+  "specVersion": "0.0.1",
+  "timestamp": "2026-08-08T01:06:15Z",
+  "generatedBy": "aicr",
+  "results": {
+    "tool": {
+      "name": "aicr",
+      "version": "0.18.0"
+    },
+    "summary": {
+      "tests": 1,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 1,
+      "pending": 0,
+      "other": 0,
+      "start": 1786151168847,
+      "stop": 1786151175162
+    },
+    "tests": [
+      {
+        "name": "nccl-all-reduce-bw",
+        "status": "skipped",
+        "duration": 0,
+        "suite": [
+          "performance"
+        ],
+        "message": "[INTERNAL] skipped - requires at least 2 GPU nodes for EW fabric test: skip",
+        "stdout": [
+          "time=2026-08-08T01:06:11.503Z level=INFO msg=\"starting check\" name=nccl-all-reduce-bw",
+          "time=2026-08-08T01:06:11.515Z level=INFO msg=\"Starting NCCL All Reduce bandwidth validation\" variant=\"\"",
+          "time=2026-08-08T01:06:11.515Z level=INFO msg=\"Target bandwidth threshold\" threshold=300 tolerance=10%",
+          "time=2026-08-08T01:06:11.515Z level=INFO msg=\"Analyzing GPU node configuration...\"",
+          "time=2026-08-08T01:06:11.543Z level=INFO msg=\"Found GPU nodes\" count=1",
+          "time=2026-08-08T01:06:11.543Z level=INFO msg=\"GPU census across target nodes\" perNode=\"gke-aicr-gke-test-b0-gpu-pool-91ae78e-45b983a1-5w91=1\" expected=1",
+          "time=2026-08-08T01:06:11.544Z level=INFO msg=\"GPU Configuration\" nodes=1 \", GPUs/node\"=1 \", total GPUs\"=1",
+          "time=2026-08-08T01:06:11.544Z level=INFO msg=\"Skipping NCCL All Reduce bandwidth validation: requires at least 2 GPU nodes for EW fabric test\" nodes=1",
+          "time=2026-08-08T01:06:11.544Z level=INFO msg=SKIP reason=\"[INTERNAL] skipped - requires at least 2 GPU nodes for EW fabric test: skip\""
+        ]
+      }
+    ]
+  }
+}

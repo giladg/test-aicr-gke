@@ -1,0 +1,13 @@
+name: test-aicr-gke
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+description: >-
+  Live test of the Pulumi NVIDIA AICR provider on GKE: zonal cluster with a CPU system pool plus one spot a3-highgpu-1g (1x H100 80GB) node running the h100-gke-cos-training-kubeflow recipe. Destroy when done.
+config:
+  gcp:project:
+    value: aicr-test-504619
+  gcp:zone:
+    value: us-central1-a

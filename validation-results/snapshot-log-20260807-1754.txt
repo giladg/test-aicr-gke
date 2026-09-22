@@ -1,0 +1,16 @@
+[cli] CLI flag overriding config value: flag=require-gpu config=false override=true
+[cli] deploying agent: namespace=default
+[cli] agent deployed successfully
+[cli] waiting for Job completion: job=aicr timeout=5m0s
+[cli] pod current phase: name=aicr-z66db status=Running
+[agent] collecting OS configuration
+[agent] collecting node topology information
+[agent] collecting Kubernetes cluster information
+[agent] collecting SystemD service configurations
+[agent] collecting GPU information
+E0808 00:54:39.738325   13947 kernel.go:150] "failed to get builtin kernel modules" err="failed to read file /lib/modules/6.12.85+/modules.builtin: open /lib/modules/6.12.85+/modules.builtin: no such file or directory"
+[agent] node topology collection complete: nodes=2 taints=1 labels=100
+[agent] configmap operation: namespace=default name=aicr-snapshot auth_method=bearer-token format=yaml
+[agent] applying ConfigMap: namespace=default name=aicr-snapshot format=yaml
+[cli] job completed successfully
+[cli] snapshot saved to file: path=./validation-results/snapshot-20260807-1754.yaml

@@ -1,0 +1,14 @@
+[cli] CLI flag overriding config value: flag=fail-on-error config=true override=false
+[cli] validating against the live cluster — validator Jobs will be deployed to the active kube-context
+[cli] loading recipe: uri=./validation-results/recipe-20260807-1754.yaml
+[cli] loading snapshot: uri=./validation-results/snapshot-20260807-1754.yaml
+[cli] running validation: phases=[performance]
+[cli] running validation phases: runID=20260807-180607-89c61d8a38d07492 phases=[performance]
+[cli] readiness pre-flight: constraints=1
+[cli] readiness constraint passed: name=K8s.server.version expected=>= 1.32 actual=v1.35.6-gke.1250000
+[cli] running validation phase: phase=performance catalog=4 selected=1
+[cli] running validator: name=nccl-all-reduce-bw phase=performance
+[cli] validator completed: name=nccl-all-reduce-bw status=skipped
+[cli] phase completed: phase=performance status=passed validators=1 passed=0 failed=0 duration=6.435820209s
+[cli] all phases completed: runID=20260807-180607-89c61d8a38d07492 phases=1
+[cli] phase result: phase=performance status=passed duration=6.435820209s

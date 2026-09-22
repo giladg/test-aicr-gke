@@ -1,0 +1,43 @@
+[cli] CLI flag overriding config value: flag=fail-on-error config=true override=false
+[cli] validating against the live cluster — validator Jobs will be deployed to the active kube-context
+[cli] loading recipe: uri=./validation-results/recipe-20260807-1754.yaml
+[cli] loading snapshot: uri=./validation-results/snapshot-20260807-1754.yaml
+[cli] running validation: phases=[deployment conformance]
+[cli] running validation phases: runID=20260807-175442-c98a035a007f03b2 phases=[deployment conformance]
+[cli] readiness pre-flight: constraints=1
+[cli] readiness constraint passed: name=K8s.server.version expected=>= 1.32 actual=v1.35.6-gke.1250000
+[cli] running validation phase: phase=deployment catalog=4 selected=4
+[cli] running validator: name=operator-health phase=deployment
+[cli] validator completed: name=operator-health status=passed
+[cli] running validator: name=expected-resources phase=deployment
+[cli] validator completed: name=expected-resources status=other
+[cli] running validator: name=gpu-operator-version phase=deployment
+[cli] validator completed: name=gpu-operator-version status=passed
+[cli] running validator: name=check-nvidia-smi phase=deployment
+[cli] validator completed: name=check-nvidia-smi status=passed
+[cli] phase completed: phase=deployment status=other validators=4 passed=3 failed=0 duration=8m28.25949s
+[cli] running validation phase: phase=conformance catalog=13 selected=10
+[cli] running validator: name=dra-support phase=conformance
+[cli] validator completed: name=dra-support status=passed
+[cli] running validator: name=gang-scheduling phase=conformance
+[cli] validator completed: name=gang-scheduling status=passed
+[cli] running validator: name=accelerator-metrics phase=conformance
+[cli] validator completed: name=accelerator-metrics status=failed
+[cli] running validator: name=ai-service-metrics phase=conformance
+[cli] validator completed: name=ai-service-metrics status=passed
+[cli] running validator: name=pod-autoscaling phase=conformance
+[cli] validator completed: name=pod-autoscaling status=passed
+[cli] running validator: name=cluster-autoscaling phase=conformance
+[cli] validator completed: name=cluster-autoscaling status=passed
+[cli] running validator: name=robust-controller phase=conformance
+[cli] validator completed: name=robust-controller status=passed
+[cli] running validator: name=secure-accelerator-access phase=conformance
+[cli] validator completed: name=secure-accelerator-access status=passed
+[cli] running validator: name=gpu-operator-health phase=conformance
+[cli] validator completed: name=gpu-operator-health status=passed
+[cli] running validator: name=platform-health phase=conformance
+[cli] validator completed: name=platform-health status=passed
+[cli] phase completed: phase=conformance status=failed validators=10 passed=9 failed=1 duration=2m55.41318075s
+[cli] all phases completed: runID=20260807-175442-c98a035a007f03b2 phases=2
+[cli] phase result: phase=deployment status=other duration=8m28.25949s
+[cli] phase result: phase=conformance status=failed duration=2m55.41318075s

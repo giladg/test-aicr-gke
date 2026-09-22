@@ -1,0 +1,2 @@
+config:
+  test-aicr-gke:gpuNodeCount: "1"
